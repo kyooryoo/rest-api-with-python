@@ -4,3 +4,5 @@ code/models/__pycache__/
 venv/
 
 *.pyc
+
+data.db
