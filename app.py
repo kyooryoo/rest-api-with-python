@@ -16,6 +16,11 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'ling'
 api = Api(app)
 
+if not os.environ.get('DATABASE_URL'):
+	@app.before_first_request
+	def create_tables():
+		db.create_all()
+
 jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Store, '/store/<string:name>')
